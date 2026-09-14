@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# ⚡ AI Resume Analyzer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack AI-powered web application that analyzes resumes against job descriptions and provides detailed feedback including scores, skill gaps, keyword analysis, and job role recommendations.
 
-## Available Scripts
+![AI Resume Analyzer](https://img.shields.io/badge/Status-Active-brightgreen)
+![React](https://img.shields.io/badge/React-18-blue)
+![Node.js](https://img.shields.io/badge/Node.js-18+-green)
+![Python](https://img.shields.io/badge/Python-3.11+-yellow)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 📸 Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| Login | Dashboard |
+|-------|-----------|
+| *Login Page* | *Dashboard Page* |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Analyze Resume | Analysis Results |
+|----------------|-----------------|
+| *Analyze Page* | *Results Page* |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Features
 
-### `npm run build`
+- 🔐 **User Authentication** — Register, login, JWT-based sessions
+- 📄 **Resume Upload** — Drag & drop PDF/DOCX support (max 5MB)
+- 🤖 **AI Analysis** — NLP-based skill extraction and scoring
+- 📊 **Score Dashboard** — Overall score, ATS score, Job Match score
+- 🎯 **Skill Matching** — Matching and missing skills detection
+- 🔑 **Keyword Analysis** — TF-IDF keyword extraction from job descriptions
+- 💪 **Strengths & Weaknesses** — Personalized resume feedback
+- 💡 **Recommendations** — Actionable improvement suggestions
+- 🎯 **Role Suggestions** — Recommended job roles with match percentages
+- 📋 **Analysis History** — Track all past analyses
+- ⚙️ **Profile Settings** — Update name and password
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Frontend
+| Technology | Purpose |
+|-----------|---------|
+| React 18 | UI Framework |
+| React Router v6 | Client-side routing |
+| Axios | HTTP client |
+| Recharts | Score trend charts |
+| React Dropzone | File upload |
+| React Toastify | Notifications |
 
-### `npm run eject`
+### Backend
+| Technology | Purpose |
+|-----------|---------|
+| Node.js 18+ | Runtime |
+| Express.js | REST API framework |
+| Mongoose | MongoDB ODM |
+| JWT | Authentication |
+| Multer | File upload handling |
+| bcryptjs | Password hashing |
+| Helmet | Security headers |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### AI Analysis Service
+| Technology | Purpose |
+|-----------|---------|
+| Python 3.11+ | Runtime |
+| FastAPI | API framework |
+| PyMuPDF | PDF text extraction |
+| python-docx | DOCX text extraction |
+| scikit-learn | TF-IDF keyword extraction |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Database
+| Technology | Purpose |
+|-----------|---------|
+| MongoDB | Primary database |
+| Mongoose | Schema modeling |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🏗️ Architecture
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Data Flow:**
+1. User uploads resume + enters job description in React UI
+2. React sends file to `POST /api/resumes/upload`
+3. Express forwards file to Python FastAPI `/extract`
+4. Python extracts text, returns to Express
+5. Express saves Resume doc, returns `resumeId`
+6. React posts `{ resumeId, jobTitle, jobDescription }` to `POST /api/analyses`
+7. Express calls Python FastAPI `/analyze`
+8. Python scores resume, returns full analysis JSON
+9. Express saves Analysis to MongoDB, returns results
+10. React displays results dashboard
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 📁 Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🚀 Installation & Setup
 
-### Making a Progressive Web App
+### Prerequisites
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Node.js 18+
+- Python 3.11+
+- MongoDB (local or Atlas)
+- pip
 
-### Advanced Configuration
+###  Clone the Repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+git clone https://github.com/yourusername/ai-resume-analyzer.git
+cd ai-resume-analyzer
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

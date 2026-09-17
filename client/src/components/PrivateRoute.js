@@ -9,3 +9,5 @@ const PrivateRoute = ({ children }) => {
 };
 
 export default PrivateRoute;
+
+// PrivateRoute is a security gate. It waits until your auth state is loaded, then either allows access to the protected component or redirects to login.

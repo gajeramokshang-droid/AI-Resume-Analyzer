@@ -55,3 +55,4 @@ router.put('/password', auth, async (req, res) => {
 });
 
 module.exports = router;
+

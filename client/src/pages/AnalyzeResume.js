@@ -6,6 +6,9 @@ import Sidebar from '../components/Sidebar';
 import FileUpload from '../components/FileUpload';
 import '../styles/analyze.css';
 
+// Normally, you use <Link to="/home"> to move between pages.
+// But sometimes you need to redirect the user after an action (like login, logout, or form submission). That’s where useNavigate comes in.
+
 const AnalyzeResume = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);

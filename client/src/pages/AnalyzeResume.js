@@ -30,7 +30,7 @@ const AnalyzeResume = () => {
 
     try {
       // Step 1: Upload resume
-      const formData = new FormData();
+      const formData = new FormData();  //FormData is a built‑in browser API.It lets you build a set of key/value pairs that represent form fields and their values.
       formData.append('file', file);
       const uploadRes = await api.post('/resumes/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },

@@ -4,14 +4,15 @@ from extractor import extract_text
 from scorer import extract_keywords, match_skills, compute_scores
 from recommender import generate_strengths, generate_weaknesses, generate_recommendations, generate_roles
 
-app = FastAPI(title="AI Resume Analyzer Service")
+app = FastAPI(title="AI Resume Analyzer Service")  # //Creates a FastAPI app called AI Resume Analyzer Service.
 
-class AnalyzeRequest(BaseModel):
+class  AnalyzeRequest(BaseModel):
+    # Defines the input format for the /analyze endpoint.
     extracted_text: str
     job_title: str
     job_description: str
 
-@app.get("/health")
+@app.get("/health")   # Simple endpoint to check if the service is running.
 def health():
     return {"status": "ok"}
 
@@ -23,6 +24,13 @@ async def extract(file: UploadFile = File(...)):
         return {"extracted_text": text}
     except ValueError as e:
         raise HTTPException(status_code=422, detail=str(e))
+#         Upload a resume file (PDF, DOCX, etc.).
+
+#       Reads the file, extracts text using extract_text.
+
+#      Returns the extracted text.
+
+#      If extraction fails, returns error 422.
 
 @app.post("/analyze")
 def analyze(req: AnalyzeRequest):

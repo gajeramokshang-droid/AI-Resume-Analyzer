@@ -11,3 +11,7 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
+
+//async function = “I’ll place the order, but it will take time.”
+//await = “I’ll wait until the pizza arrives before I start eating.”
+

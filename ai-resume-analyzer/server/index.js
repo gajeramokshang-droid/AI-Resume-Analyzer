@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
+const cors = require('cors');  // It works through special HTTP headers and is essential when your frontend (say, hosted on domain-a.com) needs to fetch data from another server (domain-b.com). Without CORS, browsers block such requests due to the same-origin policy.
+const helmet = require('helmet');   //elmet is a Node.js middleware for Express that helps secure your app by setting various HTTP headers automatically. Think of it as a "security helmet" for your server.
 const connectDB = require('./config/db');
 
 const app = express();

@@ -1,5 +1,5 @@
 const express=require('express');
-const router=require('router');
+const router=express.Router();
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const {body,validationResult}=require('express-validator');// they make sure your API only accepts valid data before saving it.
